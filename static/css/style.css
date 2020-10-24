@@ -1,0 +1,17 @@
+.navbar-title{
+    font-family:cursive;
+    color: Black
+}
+
+.navbar-nav{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.navbar-brand{
+    margin-left: 10px;
+}
+
+.background{
+    background-color: lightskyblue;
+    opacity: 20%;
+}
