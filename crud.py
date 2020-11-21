@@ -57,7 +57,12 @@ def add_comment(comment_date, commenter_id, img_id, comment_text):
 
 def get_user_data(user_id):
 
-    return Image.query.filter(Image.user_id == user_id).all()
+    # data = db.session.query(User.user_firstname, User.user_lastname, Image.img_id, Image.img_id, Image.img_location, Image.img_dateuploaded, Image.caption, Comment.comment_date, Comment.comment_text, Comment.comment_id).join(Image, Image.user_id == User.user_id).filter(Image.user_id == user_id).join(Comment, Comment.img_id == Image.img_id).order_by(Image.img_dateuploaded.desc()).all()
+
+    # return data
+
+
+   return Image.query.filter(Image.user_id == user_id).order_by(Image.img_dateuploaded.desc()).all()
 
 
 def get_follower_data(user_id):
@@ -66,9 +71,12 @@ def get_follower_data(user_id):
     
     return sorted(data, key=lambda x: x[5], reverse=True)
 
+def get_comment_data(img_id):
+
+    comments = db.session.query(Comment.comment_date, Comment.comment_text, Comment.comment_id, Image.img_id, User.user_id, User.user_firstname, User.user_lastname).join(Image, Image.img_id == Comment.img_id).filter(Comment.img_id == img_id).join(User, User.user_id == Comment.commenter_id).order_by(Comment.comment_date.desc()).all()
     
 
-
+    return comments
 
 
 if __name__ == '__main__':

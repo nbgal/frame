@@ -13,16 +13,47 @@
 
 
 function ImgData(props) {
+
+  // const commentlist = props.comments;
+
   return (
     <div>
-        <div class ="card" style={{width:"50rem", display:"block", marginLeft:"auto", marginRight:"auto"}}>
+        {/* <div class ="card" style={{width:"50rem", display:"block", marginLeft:"auto", marginRight:"auto"}}>
           <img src={props.img_location} class="img-thumbnail"/>
           <div class="card-body">
             <p class = "card-text" style= {{fontSize: "20"}}>{props.img_caption}</p>
             <p class = "card-text"style= {{fontSize: "5"}} >{props.img_dateuploaded}</p>
           </div>
-        </div>
-        <br></br>
+        </div> */}
+
+          <input type="image" class="img-thumbnail1" data-toggle="modal" data-target={"#bd-example-modal-lg"+props.img_id} src= {props.img_location}></input>
+
+          <div class="modal fade" id={"bd-example-modal-lg"+props.img_id} tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                        
+                        {/* <div class="modal-header">
+                        <h4 class="modal-title">Modal Heading</h4>
+                        <button type="button" class="close" data-dismiss="modal">×</button>
+                        </div>
+                         */}
+                        
+                        <div class="modal-body">
+                          <img src={props.img_location} style={{width:"100%"}}/>
+                          <p class = "card-text" style= {{fontSize: "20"}}>{props.img_caption}</p>
+                          <p class = "card-text"style= {{fontSize: "5"}} >{props.img_dateuploaded}</p>
+                          {/* <ul>
+                            {commentlist.map((comment) =>
+                              <ListItem value={comment} />
+                            )}
+                          </ul> */}
+                          
+              
+                        </div>
+                        
+                    </div>
+                    </div>
+                </div>
     </div>
   );
 }
@@ -37,10 +68,13 @@ function ImgContainer() {
     }, [])
 
     const imglist = [];
+    const commentList =[]
 
     for (const currentImg of images) {
         imglist.push(
         <ImgData
+          
+            img_id= {currentImg.img_id}
             img_location={currentImg.img_location}
             img_dateuploaded={currentImg.date_uploaded}
             img_caption = {currentImg.caption}
@@ -48,7 +82,7 @@ function ImgContainer() {
         );
     }
 
-    return (<div>{imglist}</div>);
+    return (<div style={{display: "inline-block"}}>{imglist}</div>);
 
 }
 

@@ -52,3 +52,5 @@ for comment in comments_data:
     comment_date, commenter_id, img_id, comment_text = (comment['comment_date'], comment['commenter_id'], comment['img_id'], comment['comment_text'])
 
     comment = crud.add_comment(comment_date, commenter_id, img_id, comment_text)
+
+

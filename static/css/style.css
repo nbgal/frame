@@ -15,3 +15,18 @@
     background-color: lightskyblue;
     opacity: 20%;
 }
+
+.button{
+    margin:0;
+    position:absolute;
+    top: 50%;
+    left:50%;
+    background-color: linen;
+}
+
+.img-thumbnail1{
+    display: inline-block;
+    width: 50%;
+    height: auto;
+    margin:0;
+}
