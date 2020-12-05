@@ -28,40 +28,61 @@
         var timestamp
     </script>
 
-    <button id="upload_widget" class="cloudinary-button">Upload files</button>
-    
-    <form action="/img_upload" , method = "POST">
-        <label for ="caption">Enter Caption</label> <br>
-        <input type="text" id="caption" name="caption"><br>
-        <input type = "hidden" name="url" id = "url" >
-        <input type = "hidden" name="created_at" id = "date">
-        <input type="submit" value = "Submit">
-    </form>
-    
-    <script type="text/javascript">  
-        var myWidget = cloudinary.createUploadWidget({
-            cloudName: 'nbhat', 
-            uploadPreset: 'e81m3son', 
-            sources:["local",
-                     "url",
-                     "camera"],
-            showCompletedButton: true,
-            },
-            (error, result) => { 
-                if (!error && result && result.event === "success") { 
-                console.log('Done! Here is the image info: ', result.info);
-                document.getElementById("url").value = result.info.secure_url
-                document.getElementById("date").value = result.info.created_at
+    <br></br>
+    <br></br>
+    <br></br>
+    <br></br>
+    <br></br>
+    <div class="col d-flex justify-content-center">
+    <div class="card text-center" style="max-width:30rem;" >
+        <h3s class="card-header font" style="background-color:#edf2fb; margin-bottom:20px">Step 1 : Upload your photo</h3s>
+      
+        <div class="card-text">
+            <button id="upload_widget" class="upload-button" >Upload</button>
+            <br></br>
+        </div>
+        <h3s class="card-header font" style="background-color:#edf2fb;margin-bottom: 20px">Step 2: Add a caption and Make it live</h3s>
+        
+        <form class="card-text font" style="margin:10px;" action="/img_upload" , method = "POST">
+            <label for ="caption" class="font"></label>
+            <input type="text" class = "font" style="min-width: 25rem;" id="caption" name="caption" placeholder="Add a caption">
+            <input type = "hidden" name="url" id = "url" >
+            <input type = "hidden" name="created_at" id = "date">
+            <input type = "hidden" name="height" id = "height">
+            <input type = "hidden" name="width" id = "width">
+            <br></br>
+            <button class ="upload-button" type="submit" value = "Post">Post</button>
+        </form>
+
+
+        
+        <script type="text/javascript">  
+            var myWidget = cloudinary.createUploadWidget({
+                cloudName: 'nbhat', 
+                uploadPreset: 'e81m3son', 
+                sources:["local",
+                        "url",
+                        "camera"],
+                showCompletedButton: true,
+                },
+                (error, result) => { 
+                    if (!error && result && result.event === "success") { 
+                    console.log('Done! Here is the image info: ', result.info);
+                    document.getElementById("url").value = result.info.secure_url
+                    document.getElementById("date").value = result.info.created_at
+                    document.getElementById("height").value = result.info.height
+                    document.getElementById("width").value = result.info.width
+                    }
                 }
-            }
-        )    
-        document.getElementById("upload_widget").addEventListener("click", function(){
-            myWidget.open();
-            
-        }, false);
+            )    
+            document.getElementById("upload_widget").addEventListener("click", function(){
+                myWidget.open();
+                
+            }, false);
 
-    </script>
-
+        </script>
+    </div>
+</div>
   
 
 

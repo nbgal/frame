@@ -1,5 +1,5 @@
 .navbar-title{
-    font-family:cursive;
+    font-family:bold, Georgia, 'Times New Roman', Times, serif;
     color: Black
 }
 
@@ -21,7 +21,6 @@
     position:absolute;
     top: 50%;
     left:50%;
-    background-color: linen;
 }
 
 .img-thumbnail1{
@@ -29,4 +28,142 @@
     width: 50%;
     height: auto;
     margin:0;
+}
+
+.gallery{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 20vw;
+    grid-gap: 10px;
+}
+
+.gallery__img__portrait{
+    width:100%;
+    height: 100%;
+    object-fit: cover;
+
+    border: 1px solid rgba(0,0,0,0.3);
+    box-shadow: 2px 2px 6px 0px rgba(0,0,0,0.3);
+    max-width: 100%;
+}
+
+.gallery__img__landscape{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    border: 1px solid rgba(0,0,0,0.3);
+    box-shadow: 2px 2px 6px 0px rgba(0,0,0,0.3);
+    max-width: 100%;
+}
+
+.profile_image{
+
+    width:100px;
+    height:100px;
+    object-fit:cover;
+    border-radius: 50%;
+
+}
+
+.commenter_image{
+
+    width:25px;
+    height:25px;
+    object-fit:cover;
+    border-radius: 50%;
+
+}
+
+
+
+.center{
+    justify-content: center;
+    align-items: center;
+    height: 250px;
+    width: 500px;
+    border: 1px solid rgba(0,0,0,0.3);
+    box-shadow: 2px 2px 6px 0px rgba(0,0,0,0.3);
+    margin-top: 10vw;
+    margin-left: 35%;
+    
+
+}
+
+.font{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: black;
+    text-align: center;
+}
+
+.footer-update{
+    display: block;
+    align-items: left;
+    flex-wrap: nowrap;
+}
+
+.modal-content textarea.form-control {
+    max-width: 100%;
+}
+
+.card-body textarea.form-control {
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.upload-button{
+    max-width: 7rem;
+    justify-content: center;
+    background-color:abc4ff;
+    border-width:.2px;
+}
+
+.background{
+    background-image: url("https://images.unsplash.com/photo-1518998053901-5348d3961a04?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1934&q=80");
+    /* background-color: #cccccc; */
+    opacity:1.0;
+}
+
+
+
+.center1{
+    justify-content: center;
+    align-items: center;
+
+}
+
+.signin-align{
+    height: 275px;
+    width: 400px;
+    border: 1px solid rgba(0,0,0,0.3);
+    box-shadow: 2px 2px 6px 0px rgba(0,0,0,0.3);
+    margin-top: 5vw;
+    margin-left: auto;
+    margin-right:auto;
+}
+
+.signin-form{
+        max-width: 200px;
+        display: block;
+        margin-left:auto; 
+        margin-right:auto;
+}
+
+
+.account-form{
+    max-width: 200px;
+    display: block;
+    margin-left:auto; 
+    margin-right:auto;
+}
+
+
+.account-align{
+    height: 450px;
+    width: 400px;
+    border: 1px solid rgba(0,0,0,0.3);
+    box-shadow: 2px 2px 6px 0px rgba(0,0,0,0.3);
+    margin-top: 5vw;
+    margin-left: auto;
+    margin-right:auto;
 }

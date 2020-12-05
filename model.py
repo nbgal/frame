@@ -12,12 +12,16 @@ class User(db.Model):
     user_lastname = db.Column(db.String)
     user_email = db.Column(db.String, unique=True)
     user_pswd = db.Column(db.String)
+    user_profile_img = db.Column(db.String)
+    user_location=db.Column(db.String)
 
-    def __init__(self, user_firstname, user_lastname, user_email, user_pswd):
+    def __init__(self, user_firstname, user_lastname, user_email, user_pswd, user_profile_img, user_location):
         self.user_firstname = user_firstname
         self.user_lastname = user_lastname
         self.user_email = user_email
         self.user_pswd = user_pswd
+        self.user_profile_img = user_profile_img
+        self.user_location=user_location
 
 class Follower(db.Model):
     __tablename__ = 'followers'
@@ -34,14 +38,16 @@ class Image(db.Model):
     img_location = db.Column(db.String)
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
     caption = db.Column(db.String)
+    orientation = db.Column(db.String)
 
     user = db.relationship('User', backref='images')
 
-    def __init__(self, img_dateuploaded, img_location, user_id, caption):
+    def __init__(self, img_dateuploaded, img_location, user_id, caption, orientation):
         self.img_dateuploaded = img_dateuploaded
         self.img_location = img_location
         self.user_id = user_id
         self.caption = caption
+        self.orientation = orientation
 
 
 class Comment(db.Model):

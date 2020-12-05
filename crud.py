@@ -3,10 +3,10 @@
 from model import db, User, Image, Follower, Comment, connect_to_db
 
 
-def create_user(user_firstname, user_lastname, user_email, user_pswd):
+def create_user(user_firstname, user_lastname, user_email, user_pswd, user_profile_img, user_location):
     """Create and return a new user."""
 
-    user = User(user_firstname=user_firstname, user_lastname=user_lastname, user_email=user_email, user_pswd=user_pswd)
+    user = User(user_firstname=user_firstname, user_lastname=user_lastname, user_email=user_email, user_pswd=user_pswd, user_profile_img=user_profile_img, user_location=user_location)
 
     db.session.add(user)
     db.session.commit()
@@ -14,10 +14,10 @@ def create_user(user_firstname, user_lastname, user_email, user_pswd):
     return user
 
 
-def create_img(img_dateuploaded, img_location, user_id, caption):
+def create_img(img_dateuploaded, img_location, user_id, caption, orientation):
     """Create and return a new user."""
 
-    image = Image(img_dateuploaded=img_dateuploaded, img_location=img_location, user_id=user_id, caption=caption)
+    image = Image(img_dateuploaded=img_dateuploaded, img_location=img_location, user_id=user_id, caption=caption, orientation=orientation)
 
     db.session.add(image)
     db.session.commit()
@@ -55,6 +55,10 @@ def add_comment(comment_date, commenter_id, img_id, comment_text):
     return comment
 
 
+def get_user_profile_data(user_id):
+    return User.query.filter(User.user_id==user_id).all()
+
+
 def get_user_data(user_id):
 
     # data = db.session.query(User.user_firstname, User.user_lastname, Image.img_id, Image.img_id, Image.img_location, Image.img_dateuploaded, Image.caption, Comment.comment_date, Comment.comment_text, Comment.comment_id).join(Image, Image.user_id == User.user_id).filter(Image.user_id == user_id).join(Comment, Comment.img_id == Image.img_id).order_by(Image.img_dateuploaded.desc()).all()
@@ -67,16 +71,22 @@ def get_user_data(user_id):
 
 def get_follower_data(user_id):
     
-    data = db.session.query(User.user_id, User.user_firstname, User.user_lastname, Image.img_id, Image.img_location, Image.img_dateuploaded, Image.caption).join(Follower, Follower.follower_id == User.user_id).filter(Follower.user_id == user_id).join(Image).all()
+    data = db.session.query(User.user_id, User.user_firstname, User.user_lastname, Image.img_id, Image.img_location, Image.img_dateuploaded, Image.caption, User.user_profile_img).join(Follower, Follower.follower_id == User.user_id).filter(Follower.user_id == user_id).join(Image).all()
     
     return sorted(data, key=lambda x: x[5], reverse=True)
 
 def get_comment_data(img_id):
 
-    comments = db.session.query(Comment.comment_date, Comment.comment_text, Comment.comment_id, Image.img_id, User.user_id, User.user_firstname, User.user_lastname).join(Image, Image.img_id == Comment.img_id).filter(Comment.img_id == img_id).join(User, User.user_id == Comment.commenter_id).order_by(Comment.comment_date.desc()).all()
+    comments = db.session.query(Comment.comment_date, Comment.comment_text, Comment.comment_id, Image.img_id, User.user_id, User.user_firstname, User.user_lastname, User.user_profile_img).join(Image, Image.img_id == Comment.img_id).filter(Comment.img_id == img_id).join(User, User.user_id == Comment.commenter_id).order_by(Comment.comment_date).all()
     
 
     return comments
+
+
+def check_follower(user, follower):
+    exists = Follower.query.filter(Follower.user_id == user, Follower.follower_id == follower).count()
+
+    return exists
 
 
 if __name__ == '__main__':

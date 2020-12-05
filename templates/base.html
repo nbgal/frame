@@ -14,29 +14,45 @@
     
 
 </head>
-    <nav class="navbar sticky-top navbar-expand-lg navbar-light" style="background-color:linen">
-        <a class="navbar-title" href="/">FRAME</a>
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light" style="background-color:#edf2fb; font-family:Georgia, 'Times New Roman', Times, serif">
+        <nav class="navbar-brand" style="font-size: 17px;">FRAME</nav>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
+
+            <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                <a class="nav-link" href="/profile">Profile</a>
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/profile">Profile</a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="/upload">Upload Image</a>
+            </ul>
+               
+            <ul class="navbar-nav ml-auto"> 
                 <li class="nav-item">
-                <a class="navbar-brand" href="/logout">
-                    <svg width="1em" height="1.3em" margin-left="1em" viewBox="0 0 16 16" class="bi bi-person-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z"/>
-                        <path fill-rule="evenodd" d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-                        <path fill-rule="evenodd" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z"/>
-                    </svg>
-                </a>
+                    <form class="navbar-form navbar-left" style="margin-top:10px;" action="/search" method="POST">
+                        <div class="input-group">
+                        <input type="text" class="form-control" name="email" placeholder="Search for a user">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" type="submit">
+                            <i class="glyphicon glyphicon-search"></i>
+                            </button>
+                        </div>
+                        </div>
+                    </form>
+                </li> 
+                <li class="nav-item">
+                    <a class="navbar-brand" href="/logout">
+                        <svg width="1.15em" height="2.5em" margin-left="1em" viewBox="0 0 16 16" class="bi bi-person-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z"/>
+                            <path fill-rule="evenodd" d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                            <path fill-rule="evenodd" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z"/>
+                        </svg>
+                    </a>
                 </li>
-
-
             </ul>
         </div>
     </nav>
@@ -46,11 +62,11 @@
 <div class="container">
 
   <!-- Show flashed messages -->
-  {% with messages = get_flashed_messages() %}
+  <!-- {% with messages = get_flashed_messages() %}
       {% for message in messages %}
           <div class="alert alert-warning">{{ message }}<br><br></div>
       {% endfor %}
-  {% endwith %}
+  {% endwith %} -->
 
   <!-- This is where the main content goes. -->
   {% block body %}

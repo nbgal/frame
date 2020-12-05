@@ -19,20 +19,21 @@ with open('data/users.json') as f:
 
 users_in_db = []
 for user in user_data:
-    user_firstname, user_lastname = (user['user_firstname'], user['user_lastname'])
+    user_firstname, user_lastname, user_profile_img, user_location = (user['user_firstname'], user['user_lastname'], user['user_profile_img'], user['user_location'])
     user_email = f'{user_firstname}_{user_lastname}@test.com'
     user_pswd = 'test'
+    
 
-    user = crud.create_user(user_firstname, user_lastname, user_email, user_pswd)
+    user = crud.create_user(user_firstname, user_lastname, user_email, user_pswd, user_profile_img, user_location)
 
 with open('data/images.json') as f:
     image_data = json.loads(f.read())
 
 image_in_db = []
 for image in image_data:
-    img_dateuploaded, img_location, user_id, caption = (image['img_dateuploaded'], image['img_location'], image['user_id'], image['caption'])
+    img_dateuploaded, img_location, user_id, caption, orientation = (image['img_dateuploaded'], image['img_location'], image['user_id'], image['caption'], image['orientation'])
 
-    img = crud.create_img(img_dateuploaded, img_location, user_id, caption)
+    img = crud.create_img(img_dateuploaded, img_location, user_id, caption, orientation)
 
 with open('data/followers.json') as f:
     followers_data = json.loads(f.read())
